@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer With</title>
+    <link rel="stylesheet" href="./css/styles.css" type="text/css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body>
+    <h1> Paint.js </h1>
+    <div class="cv_wrap"><canvas id="cv"></canvas></div>
+
+    <section id="sect_stroke">
+        <input 
+            id="ipt_stroke" 
+            type="range" min="1" max="20" value="5" step="1"/>
+    </section><!-- sect_stroke -->
+
+    <section id="sect_ctrl">
+        <button id="btn_mode" data-mode="brush">brush</button>
+        <button id="btn_save">save</button>
+        <button id="btn_reset">reset</button>
+    </section><!-- sect_ctrl -->
+
+    <ul id="ul_plt">
+        <li class="on" style="background:#2c2c2c;"></li>
+        <li style="background:#fff;"></li>
+        <li style="background:#ff3b30;"></li>
+        <li style="background:#ff9500;"></li>
+        <li style="background:#ffcc00;"></li>
+        <li style="background:#4cd963;"></li>
+        <li style="background:#5ac8fa;"></li>
+        <li style="background:#0579ff;"></li>
+        <li style="background:#9e19c7;"></li>
+    </ul><!-- ul_plt -->
+</body>
+</html>
