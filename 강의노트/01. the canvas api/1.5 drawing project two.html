@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+    <canvas id="cv" style="width:90vmin;aspect-ratio:1/1;border:1px solid black;"></canvas>
+
+<script>
+    const $canvas = document.getElementById('cv');
+    const ctx = $canvas.getContext("2d");
+    const wWid = window.innerWidth * 0.9;
+    const wHei = window.innerHeight * 0.9;
+    const finalSize = wWid > wHei ?  wHei : wWid;
+    $canvas.width = finalSize;
+    $canvas.height = finalSize;
+
+    ctx.fillRect(finalSize / 2 - 50, finalSize / 2 - 75, 100, 150);
+    
+    ctx.lineWidth=20;
+    ctx.moveTo(finalSize / 2 - 50, finalSize / 2 - 70);
+    ctx.lineTo(finalSize / 2 - 100, finalSize / 2 + 25);
+    ctx.moveTo(finalSize / 2 + 50,finalSize / 2 - 70);
+    ctx.lineTo(finalSize / 2 + 100,finalSize / 2 + 25);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(finalSize / 2,finalSize / 2 - 120,40,0, 1 * Math.PI);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillRect(finalSize/2 + 10,finalSize/2 + 70,30,120);
+    ctx.fillRect(finalSize/2 - 40,finalSize/2 + 70,30,120);
+
+    //대가리
+    ctx.beginPath();
+    ctx.fillStyle = "green";
+    ctx.arc(finalSize / 2,finalSize / 2 - 125,55, 1 * Math.PI,0);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 3;
+    ctx.arc(
+        finalSize / 2,
+        finalSize / 3.5,
+        10,
+        0,
+        1 * Math.PI
+    );
+    ctx.stroke();
+</script>
+</body>
+</html>

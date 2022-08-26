@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+    <canvas id="cv" style="width:90vmin;aspect-ratio:1/1;border:1px solid black;"></canvas>
+
+<script>
+    const $canvas = document.getElementById('cv');
+    const ctx = $canvas.getContext("2d");
+    const wWid = window.innerWidth * 0.9;
+    const wHei = window.innerHeight * 0.9;
+    const finalSize = wWid > wHei ?  wHei : wWid;
+    $canvas.width = finalSize;
+    $canvas.height = finalSize;
+    const rectSize = finalSize / 4;
+    const cvCenter = (finalSize / 2) - (rectSize / 2);
+
+    //x,y,wid,hei
+    // ctx.fillRect(cvCenter, cvCenter, rectSize, rectSize);
+
+    ctx.fillStyle = "black";
+    ctx.rect(cvCenter, cvCenter, rectSize, rectSize);
+    ctx.stroke();
+    ctx.fill();
+    //fillRect는 위 과정의 단축형이구나
+
+    ctx.fillStyle = "red";
+    ctx.rect(0,0,50,50);
+    ctx.rect(50,50,50,50);
+    ctx.rect(100,100,50,50);
+    ctx.fill();
+
+    //왜 다 빨간색일까...
+    //아직은 전부 같은 경로의 일부긴 때문
+    // 그래서 beginPath, closePath 해주는거야
+
+    ctx.beginPath(); //이전 경로와 단절 시작
+    ctx.fillStyle = "#ffcd01";
+    ctx.rect(150,150,50,50);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = "black";
+    ctx.rect(300,300,50,50);
+    ctx.fill();
+</script>
+</body>
+</html>

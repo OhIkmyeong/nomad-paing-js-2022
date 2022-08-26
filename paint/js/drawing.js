@@ -10,7 +10,7 @@ export class Drawing{
     add_event(){
         this.set_toggle_mode();
 
-        this.PAINT.$canvas.addEventListener('mousedown',this.start);
+        this.PAINT.$canvas.addEventListener('mousedown',this.start,{once:true});
         this.PAINT.$canvas.addEventListener('mousemove',this.on_move);
         this.PAINT.$canvas.addEventListener('mouseleave',this.stop);
         this.PAINT.$canvas.addEventListener('mouseup',this.stop);
@@ -35,6 +35,7 @@ export class Drawing{
     stop = () => {
         this.PAINTING = false;
         this.PAINT.ctx.closePath();
+        this.PAINT.$canvas.addEventListener('mousedown',this.start,{once:true});
     }//stop
 
     /** 드로잉-brush-움직일때 */

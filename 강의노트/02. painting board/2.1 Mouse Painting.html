@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+    <canvas id="cv" style="width:90vmin;aspect-ratio:1/1;border:1px solid black;"></canvas>
+
+<script>
+    const $canvas = document.getElementById('cv');
+    const ctx = $canvas.getContext("2d");
+    const wWid = window.innerWidth * 0.9;
+    const wHei = window.innerHeight * 0.9;
+    const finalSize = wWid > wHei ?  wHei : wWid;
+    $canvas.width = finalSize;
+    $canvas.height = finalSize;
+    ctx.lineWidth = 10;
+
+    /*  */
+    $canvas.addEventListener('mousedown',on_down,{once:true});
+    $canvas.addEventListener('mouseup',on_up);
+    $canvas.addEventListener('mouseleave',on_up);
+    
+    function on_down(e){
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX ,e.offsetY);
+        $canvas.addEventListener('mousemove',on_move);
+    }//on_down
+
+    function on_move(e){
+        if(e.buttons !== 1) return;
+        ctx.lineTo(e.offsetX,e.offsetY);
+        ctx.stroke();
+    }//on_move
+
+    function on_up(e){
+        ctx.closePath();
+        $canvas.removeEventListener('mousemove',on_move);
+        $canvas.addEventListener('mousedown',on_down,{once:true});
+    }//on_up
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+    <canvas id="cv" style="width:90vmin;aspect-ratio:1/1;border:1px solid black;"></canvas>
+
+<script>
+    const $canvas = document.getElementById('cv');
+    const ctx = $canvas.getContext("2d");
+    const wWid = window.innerWidth * 0.9;
+    const wHei = window.innerHeight * 0.9;
+    const finalSize = wWid > wHei ?  wHei : wWid;
+    $canvas.width = finalSize;
+    $canvas.height = finalSize;
+
+    /*  */
+    const colors = ["red","orange","yellow","green","dodgerblue","purple","black","salmon","pink","gold","orangered","brown"];
+    let i=0;
+    const startPos = {x:0,y:0};
+
+    $canvas.addEventListener('mousemove',draw_line);
+    $canvas.addEventListener('click',set_random);
+    
+    function draw_line(e){
+        if(e.buttons !== 1) return;
+        const {offsetX : x, offsetY : y} = e;
+        ctx.beginPath();
+        ctx.moveTo(startPos.x,startPos.y);
+        ctx.lineTo(x,y);
+        ctx.stroke();
+    }//draw_line
+
+    function set_random(e){
+        const colorIdx = parseInt(Math.random() * colors.length);
+        ctx.strokeStyle = colors[colorIdx];
+        // const rx = parseInt(Math.random() * finalSize);
+        // const ry = parseInt(Math.random() * finalSize);
+        const rx = e.offsetX;
+        const ry = e.offsetY;
+        startPos.x = rx;
+        startPos.y = ry;
+    }//set_random
+</script>
+</body>
+</html>

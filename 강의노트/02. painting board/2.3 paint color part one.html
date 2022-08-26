@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body>
+    <canvas id="cv"></canvas>
+
+    <!-- line Width -->
+    <input id="line-width" type="range" min="1" max="50" step="1" value="10"/>
+
+    <!-- color -->
+    <input id="clr" type="color" color="rgb(0,0,0)"/>
+    
+<script>
+    const $canvas = document.getElementById('cv');
+    const ctx = $canvas.getContext("2d");
+    const wWid = window.innerWidth * 0.9;
+    const wHei = window.innerHeight * 0.9;
+    const finalSize = wWid > wHei ?  wHei : wWid;
+    $canvas.width = finalSize;
+    $canvas.height = finalSize;
+    let DRAW = false;
+
+    const $lineWidth = document.getElementById('line-width');
+    const $color = document.getElementById('clr');
+
+
+    /*  */
+    $canvas.addEventListener('mousedown',on_down,{once:true});
+    $canvas.removeEventListener('mousemove',on_move);
+    $canvas.addEventListener('mouseup',on_up);
+    $canvas.addEventListener('mouseleave',on_up);
+    
+    function on_down(e){
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX ,e.offsetY);
+        DRAW = true;
+        $canvas.addEventListener('mousemove',on_move);
+    }//on_down
+
+    function on_move(e){
+        if(!DRAW) return;
+        ctx.lineTo(e.offsetX,e.offsetY);
+        ctx.stroke();
+    }//on_move
+
+    function on_up(e){
+        DRAW = false;
+        $canvas.addEventListener('mousedown',on_down,{once:true});
+    }//on_up
+    
+    /** line Width */
+    on_line_width();
+    $lineWidth.addEventListener('change',on_line_width);
+    function on_line_width(){
+        ctx.lineWidth = $lineWidth.value;
+    }//on_line_width
+
+    /** color */
+    $color.addEventListener('change',on_color);
+
+    function on_color(e){
+        const val = e.currentTarget.value;
+        ctx.strokeStyle = val;
+        ctx.fillStyle = val;
+    }//on_color
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/main.js" type="module"></script>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+    <canvas id="cv" style="width:90vmin;aspect-ratio:1/1;border:1px solid black;"></canvas>
+
+<script>
+    const $canvas = document.getElementById('cv');
+    const ctx = $canvas.getContext("2d");
+    const wWid = window.innerWidth * 0.9;
+    const wHei = window.innerHeight * 0.9;
+    const finalSize = wWid > wHei ?  wHei : wWid;
+    $canvas.width = finalSize;
+    $canvas.height = finalSize;
+    const rectSize = finalSize / 4;
+    const cvCenter = (finalSize / 2) - (rectSize / 2);
+
+    ctx.fillRect(cvCenter, cvCenter, rectSize, rectSize);
+    //x,y,wid,hei
+</script>
+</body>
+</html>
