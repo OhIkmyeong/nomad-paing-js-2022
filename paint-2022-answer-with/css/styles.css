@@ -19,7 +19,7 @@ body{
 }
 
 #palette label{cursor:pointer;}
-#palette input{display:none;}
+#palette input{position:absolute;width:1px;height:1px;overflow:hidden;}
 #palette .plt{
     display:block;
     width:40px; aspect-ratio:1/1;

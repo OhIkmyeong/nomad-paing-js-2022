@@ -11,6 +11,12 @@
 <body>
     <canvas id="cv"></canvas>
 
+    <!-- buttons -->
+    <section id="btns">
+        <button id="btn-mode" data-mode="brush">brush</button>
+        <button id="btn-save">SAVE</button>
+    </section><!-- btns -->
+
     <!-- line Width -->
     <input id="line-width" type="range" min="1" max="50" step="1" value="10"/>
 
@@ -73,34 +79,42 @@
     const finalSize = wWid > wHei ?  wHei : wWid;
     $canvas.width = finalSize > 800 ? 800 : finalSize;
     $canvas.height = $canvas.width;
-    let DRAW = false;
+    let isPainting = false;
+    let isFilling = false;
 
     const $lineWidth = document.getElementById('line-width');
     const $color = document.getElementById('clr');
     const $palette = document.getElementById('palette');
+    const $mode = document.getElementById('btn-mode');
+    const $save = document.getElementById('btn-save');
 
 
     /*  */
     $canvas.addEventListener('mousedown',on_down,{once:true});
-    $canvas.removeEventListener('mousemove',on_move);
     $canvas.addEventListener('mouseup',on_up);
     $canvas.addEventListener('mouseleave',on_up);
     
     function on_down(e){
+        if(isFilling){
+            fill_canvas();
+            return;
+        }//if
         ctx.beginPath();
         ctx.moveTo(e.offsetX ,e.offsetY);
-        DRAW = true;
+        isPainting = true;
         $canvas.addEventListener('mousemove',on_move);
     }//on_down
 
     function on_move(e){
-        if(!DRAW) return;
+        console.log('on_move');
+        if(!isPainting) return;
         ctx.lineTo(e.offsetX,e.offsetY);
         ctx.stroke();
     }//on_move
 
     function on_up(e){
-        DRAW = false;
+        isPainting = false;
+        $canvas.removeEventListener('mousemove',on_move);
         $canvas.addEventListener('mousedown',on_down,{once:true});
     }//on_up
     
@@ -130,6 +144,23 @@
         on_color(e);
         $color.value = e.target.value;
     });
+
+    /** 모드 전환 */
+    function on_click_mode(e){
+        const $btn = e.currentTarget;
+        const mode = $btn.dataset.mode;
+        const changeMode = mode == "brush" ? "fill" : "brush";
+        $btn.dataset.mode = changeMode;
+        $btn.textContent = changeMode;
+        isFilling = changeMode == "brush" ? false : true;
+    }//on_click_mode
+
+    $mode.addEventListener('click',on_click_mode);
+
+    /** 캔버스 채우기 */
+    function fill_canvas(){
+        ctx.fillRect(0,0,finalSize,finalSize);
+    }//fill_canvas
 </script>
 </body>
 </html>
