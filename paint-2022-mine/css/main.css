@@ -4,8 +4,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 label,button{cursor:pointer;}
-html,body{background:var(--bg);}
-body{min-height:100vh; padding-top:max(5vmin, 20px);}
+html,body{background:var(--bg);min-height:100vh;}
+body{
+    display:flex;
+    justify-content:center; align-items:center;}
 
 input[type="radio"]{
     position:absolute;overflow:hidden;
@@ -22,8 +24,7 @@ input[type="radio"]{
     align-items:center;
     gap:var(--gap);
     position:relative;
-    width:100vmin;
-    margin:0 auto; padding:var(--gap);
+    width:90vmin;padding:var(--gap);
     background:#fff;}
 
 #wrapper > section{

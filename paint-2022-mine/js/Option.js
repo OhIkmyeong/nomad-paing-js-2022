@@ -5,6 +5,8 @@ export class Option{
         this.$lineWidth = document.getElementById('lineWidth');
         this.$reset = document.getElementById('btn-reset');
         this.$save = document.getElementById('btn-save');
+        this.InitialSize = this.set_canvas_size();
+        this.sizeParam = 0;
     }//constructor
 
     /** 옵션 총괄(캔버스 사이즈, 브러쉬 굵기, 전부 지우기, 저장)  */
@@ -14,14 +16,23 @@ export class Option{
         this.$lineWidth.addEventListener('change',this.set_brush_size);
         this.$reset.addEventListener('click',this.reset_canvas);
         this.$save.addEventListener('click',this.save_canvas);
+
+        window.addEventListener('resize',this.set_size_param);
     }//init
 
     /** 캔버스 사이즈 조정 */
-    set_canvas_size(){
+    set_canvas_size = ()=>{
         const size = this.PAINT.$canvas.offsetWidth;
         this.PAINT.$canvas.width = size;
         this.PAINT.$canvas.height = size;
+        return size;
     }//set_canvas_size
+
+    /** 브라우저 크기 변경시 */
+    set_size_param = () =>{
+        const size = this.PAINT.$canvas.offsetWidth;
+        this.sizeParam = (this.InitialSize - size);
+    }//set_size_param
 
     /** 브러쉬 사이즈 조정 */
     set_brush_size = () =>{

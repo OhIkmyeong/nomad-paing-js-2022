@@ -31,9 +31,12 @@ export class Paint{
         const {brush,fill,eraser} = this.MODE.modeType; 
         switch(this.MODE.mode){
             case brush :
-                this.ctx.beginPath();
-                this.ctx.moveTo(e.offsetX,e.offsetY);
-                this.$canvas.addEventListener('mousemove', this.on_move_brush);
+                {
+                    this.ctx.beginPath();
+                    const {x,y} = this.return_pos(e);
+                    this.ctx.moveTo(x, y);
+                    this.$canvas.addEventListener('mousemove', this.on_move_brush);
+                }
                 break;
             case fill :
                 this.on_fill();
@@ -54,7 +57,8 @@ export class Paint{
     /** mouse move : 그림 그리기 start to draw / fill / erase*/
     on_move_brush = e =>{
         console.log('on move : brush');
-        this.ctx.lineTo(e.offsetX,e.offsetY);
+        const {x,y} = this.return_pos(e);
+        this.ctx.lineTo(x,y);
         this.ctx.stroke();
     }//on_move_brush
 
@@ -68,6 +72,17 @@ export class Paint{
     on_move_eraser = (e) =>{
         console.log('on move : eraser');
         const size = this.OPTION.$lineWidth.value;
-        this.ctx.clearRect(e.offsetX - size / 2, e.offsetY - size / 2,size,size);
+        const {x,y} = this.return_pos(e);
+        this.ctx.clearRect(x - size / 2, y - size / 2,size,size);
     }//on_move_eraser
+
+    return_pos(e){
+        const {offsetX:x, offsetY:y} = e;
+        const {sizeParam : param} = this.OPTION;
+        const perX = x / this.$canvas.offsetWidth;
+        const perY = y / this.$canvas.offsetHeight;
+        const finalX = x + (param * perX);
+        const finalY = y + (param * perY);
+        return{x:finalX, y:finalY};
+    }//return_pos
 }//Paint

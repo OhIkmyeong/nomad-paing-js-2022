@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memeMaker-answer-with</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css"/>
+    <script src="main.js" type="module"></script>
+</head>
+<body>
+    <canvas id="cv"></canvas>
+
+    <!-- buttons -->
+    <section id="btns">
+        <button id="btn-mode" data-mode="brush">brush</button>
+        <button id="btn-eraser">지우개 OFF</button>
+        <button id="btn-reset">RESET</button>
+        <button id="btn-save">SAVE</button>
+    </section><!-- btns -->
+
+    <!-- line Width -->
+    <input id="line-width" type="range" min="1" max="50" step="1" value="10"/>
+
+    <!-- color -->
+    <input id="clr" type="color" color="rgb(0,0,0)"/>
+
+    <!-- palette -->
+    <fieldset id="palette">
+        <label>
+            <input type="radio" name="ipt-plt" value="#1abc9c"/>
+            <span class="plt" style="background:#1abc9c;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#2ecc71"/>
+            <span class="plt" style="background:#2ecc71;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#3498db"/>
+            <span class="plt" style="background:#3498db;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#2980b9"/>
+            <span class="plt" style="background:#2980b9;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#9b59b6"/>
+            <span class="plt" style="background:#9b59b6;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#2c3e50"/>
+            <span class="plt" style="background:#2c3e50;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#f1c40f"/>
+            <span class="plt" style="background:#f1c40f;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#e67e22"/>
+            <span class="plt" style="background:#e67e22;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#e74c3c"/>
+            <span class="plt" style="background:#e74c3c;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#ecf0f1"/>
+            <span class="plt" style="background:#ecf0f1;"></span>
+        </label>
+        <label>
+            <input type="radio" name="ipt-plt" value="#7f8c8d"/>
+            <span class="plt" style="background:#7f8c8d;"></span>
+        </label>
+    </fieldset>
+</body>
+</html>
