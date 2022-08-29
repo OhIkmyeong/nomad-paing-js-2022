@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paint-2022-mine</title>
+<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+<script src="./js/main.js" type="module"></script>
+</head>
+<body>
+
+<div id="wrapper">
+    <!-- [left] -->
+    <section class="left">
+        <div id="wrap-color-curr">
+            <input type="color" id="color-curr" value="#000000"/>
+        </div>
+        <fieldset id="palette">
+            <label>
+                <input type="radio" name="color-palette" value="#e74c3c"/>
+                <span class="plt" style="background:#e74c3c;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#e67e22"/>
+                <span class="plt" style="background:#e67e22;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#f1c40f"/>
+                <span class="plt" style="background:#f1c40f;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#2ecc71"/>
+                <span class="plt" style="background:#2ecc71;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#1abc9c"/>
+                <span class="plt" style="background:#1abc9c;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#3498db"/>
+                <span class="plt" style="background:#3498db;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#2980b9"/>
+                <span class="plt" style="background:#2980b9;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#9b59b6"/>
+                <span class="plt" style="background:#9b59b6;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#7f8c8d"/>
+                <span class="plt" style="background:#7f8c8d;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#2c3e50"/>
+                <span class="plt" style="background:#2c3e50;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#ecf0f1"/>
+                <span class="plt" style="background:#ecf0f1;"></span>
+            </label>
+            <label>
+                <input type="radio" name="color-palette" value="#f9f9fc"/>
+                <span class="plt" style="background:#f9f9fc;"></span>
+            </label>
+        </fieldset><!-- color-palette -->
+        
+        <fieldset id="mode">
+            <label>
+                <input type="radio" name="paint-mode" value="brush" title="브러쉬" checked/>
+                <div class="ic"></div>
+            </label>
+            <label>
+                <input type="radio" name="paint-mode" value="fill" title="페인트 붓기"/>
+                <div class="ic"></div>
+            </label>
+            <label>
+                <input type="radio" name="paint-mode" value="eraser" title="지우개"/>
+                <div class="ic"></div>
+            </label>
+        </fieldset><!-- mode -->
+    </section><!-- left -->
+
+    <!-- [center] -->
+    <section class="center">
+        <canvas id="cv"></canvas>
+        <button id="btn-reset">reset</button>
+        <button id="btn-save">save</button>
+    </section><!-- center -->
+    
+    <!-- [right] -->
+    <section class="right">
+        <input id="lineWidth" type="range" min="1" max="50" step="1" value="10"/>
+    </section><!-- right -->
+</div><!-- wrapper -->
+
+</body>
+</html>
