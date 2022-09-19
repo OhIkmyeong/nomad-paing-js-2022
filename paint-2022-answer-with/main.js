@@ -16,7 +16,6 @@ const $mode = document.getElementById('btn-mode');
 const $eraser = document.getElementById('btn-eraser');
 const $reset = document.getElementById('btn-reset');
 const $save = document.getElementById('btn-save');
-const $file = document.getElementById('file-meme');
 
 
 /*  */
@@ -24,24 +23,6 @@ $canvas.addEventListener('mousedown',on_down,{once:true});
 $canvas.addEventListener('mouseup',on_up);
 $canvas.addEventListener('mouseleave',on_up);
 
-$lineWidth.addEventListener('change',on_line_width);
-$mode.addEventListener('click',on_click_mode);
-
-$eraser.addEventListener('click',(e)=>{
-    isEraser = !isEraser;
-    $eraser.textContent = isEraser ? "지우개 ON" : "지우개 OFF";
-});
-
-$reset.addEventListener('click',reset_canvas);
-$save.addEventListener('click',save_canvas);
-
-$file.addEventListener('change',on_file_change);
-
-/*  */
-on_line_width();
-
-
-/*  */
 function on_down(e){
     if(isEraser){
         $canvas.addEventListener('mousemove',on_eraser);
@@ -74,6 +55,8 @@ function on_up(e){
 }//on_up
 
 /** line Width */
+on_line_width();
+$lineWidth.addEventListener('change',on_line_width);
 function on_line_width(){
     ctx.lineWidth = $lineWidth.value;
 }//on_line_width
@@ -110,6 +93,8 @@ function on_click_mode(e){
     isFilling = changeMode == "brush" ? false : true;
 }//on_click_mode
 
+$mode.addEventListener('click',on_click_mode);
+
 /** 캔버스 색상 채우기 */
 function fill_canvas(){
     ctx.fillRect(0,0,finalSize,finalSize);
@@ -123,39 +108,14 @@ function on_eraser(e){
     ctx.clearRect(offsetX - size / 2, offsetY - size / 2, size, size);
 }//on_eraser
 
+$eraser.addEventListener('click',(e)=>{
+    isEraser = !isEraser;
+    $eraser.textContent = isEraser ? "지우개 ON" : "지우개 OFF";
+});
 
 /** 캔버스 전체 지우기 */
 function reset_canvas(){
     if(confirm('캔버스를 지우시겠습니까?')) ctx.clearRect(0,0,finalSize,finalSize);
 }//reset_canvas
-
+$reset.addEventListener('click',reset_canvas);
 /** 캔버스 저장 */
-function save_canvas(){
-    const link = document.createElement('A');
-    link.href = $canvas.toDataURL('image/png');
-    const date = new Date();
-    const dateStr = `${date.getFullYear()}${number_to_digit(date.getMonth()+1)}${number_to_digit(date.getDate())}-${number_to_digit(date.getHours())}${number_to_digit(date.getMinutes())}${number_to_digit(date.getSeconds())}${date.getMilliseconds()}`;
-    link.download = "paintJS-"+dateStr;
-    link.click();
-}//save_canvas
-
-/** 숫자를 2자리의 문자로 반환 */
-function number_to_digit(num){return String(num).padStart(2,"0");}
-
-/** 이미지 file 등록시 */
-function on_file_change(e){
-    // console.dir(e);
-    const file =  e.target.files[0]
-    const url = URL.createObjectURL(file);
-    const img = new Image();
-    img.src = url;
-    img.onload= function(){
-        const per = img.width / img.height;
-        const sizeW = img.width > $canvas.width ? $canvas.width : img.width;
-        const sizeH = img.width > $canvas.height ? sizeW / per  : img.height; 
-        const dx = ($canvas.width / 2) - (sizeW / 2);
-        const dy = ($canvas.height / 2) - (sizeH / 2);
-        ctx.drawImage(img,dx,dy,sizeW,sizeH);
-        $file.value = null;
-    };
-}//on_file_change
