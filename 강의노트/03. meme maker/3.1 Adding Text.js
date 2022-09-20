@@ -68,7 +68,6 @@ function on_move(e){
 }//on_move
 
 function on_up(e){
-    // ctx.fill(); //stroke 내부 채우기
     isPainting = false;
     $canvas.removeEventListener('mousemove',on_move);
     $canvas.removeEventListener('mousemove',on_eraser);
@@ -135,9 +134,7 @@ function reset_canvas(){
     if(confirm('캔버스를 지우시겠습니까?')) ctx.clearRect(0,0,finalSize,finalSize);
 }//reset_canvas
 
-/** 캔버스 저장 
- * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
-*/
+/** 캔버스 저장 */
 function save_canvas(){
     const link = document.createElement('A');
     link.href = $canvas.toDataURL('image/png');
@@ -179,4 +176,5 @@ function on_double_click(e){
     // ctx.strokeText(txt, offsetX, offsetY);
     ctx.fillText(txt, offsetX, offsetY);
     ctx.restore();
+    
 }//on_double_click

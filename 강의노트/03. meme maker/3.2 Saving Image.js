@@ -68,7 +68,6 @@ function on_move(e){
 }//on_move
 
 function on_up(e){
-    // ctx.fill(); //stroke 내부 채우기
     isPainting = false;
     $canvas.removeEventListener('mousemove',on_move);
     $canvas.removeEventListener('mousemove',on_eraser);

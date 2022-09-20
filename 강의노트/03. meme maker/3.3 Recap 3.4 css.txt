@@ -1,0 +1,12 @@
+meyerweb.com
+
+과제 : 
+1) 폰트 사이즈랑 
+2) 폰트 종류 바꿀 수 있게.
+let f = new Fontface('test','url(x)');
+f.load.then(()=>{...}
+3) 폰트 fill/stroke 
+4) 단순 brush가 아니라 모양을 할 수있게
+    - on_move 함수에서 ctx.stroke()를 ctx.fill()로 바꾼다거나
+    - 아니면 마우스 떼면 안에 페인트로 자동으로 채워준다거나
+        (on_up 함수에 ctx.fill() 추가)
